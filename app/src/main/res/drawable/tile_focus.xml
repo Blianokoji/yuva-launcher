@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Focused: brighter surface, 2dp sakura-rose border -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <solid android:color="@color/surface_hi" />
+    <corners android:radius="@dimen/tile_radius" />
+    <stroke android:width="@dimen/focus_border" android:color="@color/accent" />
+</shape>

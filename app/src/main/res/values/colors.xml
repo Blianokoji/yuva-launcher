@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 60-30-10 on a sakura-dusk palette -->
+    <color name="canvas">#0C0A1C</color>
+    <color name="surface">#171233</color>
+    <color name="surface_hi">#221B45</color>
+    <color name="accent">#FF8FB3</color>
+    <color name="accent_dim">#99FF8FB3</color>
+    <color name="hairline">#1AFFFFFF</color>
+    <color name="text_primary">#F2EEF8</color>
+    <color name="text_muted">#9A94B0</color>
+    <color name="scrim">#66000000</color>
+</resources>

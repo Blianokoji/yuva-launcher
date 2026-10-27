@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/canvas">
+
+    <!-- full-bleed wallpaper, scaled to fill -->
+    <ImageView
+        android:id="@+id/wallpaper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:contentDescription="@null" />
+
+    <!-- scrim for legibility -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/wallpaper_scrim" />
+
+    <!-- status cluster, top-right -->
+    <LinearLayout
+        android:id="@+id/status_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="@dimen/status_pad">
+
+        <TextView
+            android:id="@+id/wifi_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_muted"
+            android:textSize="14sp"
+            android:layout_marginEnd="18dp" />
+
+        <TextView
+            android:id="@+id/clock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_primary"
+            android:textSize="18sp"
+            android:fontFamily="sans-serif-light" />
+    </LinearLayout>
+
+    <!-- main row anchored to the lower third -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/app_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="80dp"
+        android:paddingStart="@dimen/side_pad"
+        android:paddingEnd="@dimen/side_pad"
+        android:clipToPadding="false"
+        android:focusable="true"
+        android:descendantFocusability="afterDescendants" />
+
+    <!-- small bottom row for inputs / all apps / settings -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/system_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="16dp"
+        android:paddingStart="@dimen/side_pad"
+        android:paddingEnd="@dimen/side_pad"
+        android:clipToPadding="false"
+        android:focusable="true"
+        android:descendantFocusability="afterDescendants" />
+</FrameLayout>
