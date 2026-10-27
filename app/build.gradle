@@ -11,9 +11,22 @@ android {
         applicationId "com.yuva.launcher"
         minSdk 28
         targetSdk 34
-        versionCode 1
-        versionName "1.0"
+        // CI passes these from the git tag (v1.2.3 -> 1.2.3, code 10203); local builds keep the defaults
+        versionCode = (project.findProperty("appVersionCode") ?: "10100").toString().toInteger()
+        versionName = (project.findProperty("appVersionName") ?: "1.1.0").toString()
         ndk { abiFilters 'armeabi-v7a' }
+    }
+
+    signingConfigs {
+        // Only defined when CI (or you) provide a keystore; otherwise release falls back to the debug key.
+        if (System.getenv("KEYSTORE_FILE")) {
+            release {
+                storeFile file(System.getenv("KEYSTORE_FILE"))
+                storePassword System.getenv("KEYSTORE_PASSWORD")
+                keyAlias System.getenv("KEY_ALIAS")
+                keyPassword System.getenv("KEY_PASSWORD")
+            }
+        }
     }
 
     buildTypes {
@@ -21,7 +34,7 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.debug  // sideload build; replace with your own key for distribution
+            signingConfig = System.getenv("KEYSTORE_FILE") ? signingConfigs.getByName("release") : signingConfigs.getByName("debug")
         }
     }
     compileOptions {

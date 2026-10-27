@@ -5,14 +5,12 @@
     android:layout_height="match_parent"
     android:clipChildren="false">
 
-    <!-- wallpaper, slightly oversized so it can drift with focus (parallax) -->
+    <!-- full-bleed wallpaper: fixed, it never moves with focus -->
     <ImageView
         android:id="@+id/wallpaper"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:scaleX="1.06"
-        android:scaleY="1.06"
         android:contentDescription="@null" />
 
     <!-- left nav rail -->

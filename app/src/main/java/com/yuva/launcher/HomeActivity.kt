@@ -270,9 +270,6 @@ class HomeActivity : AppCompatActivity() {
     private fun onAppFocused(pos: Int, count: Int, app: AppItem) {
         lastRowPos = pos
         swapLabel(app.label)
-        val d = resources.displayMetrics.density
-        wallpaperView.animate().translationX(((count - 1) / 2f - pos) * 7f * d).setDuration(700)
-            .setInterpolator(DecelerateInterpolator(2f)).start()
     }
 
     private fun swapLabel(text: String) {
