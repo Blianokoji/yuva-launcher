@@ -70,3 +70,27 @@ On this 1 GB device, launcher PSS should stay under 25 MB at idle:
 
 ## License
 Original code, MIT. Wallpaper art (`projector_research/wallpaper_sakura_dusk.jpg`) is also original.
+
+## Crimson Eclipse wallpaper deck
+
+The launcher reads a curated wallpaper deck from the device, not from the APK:
+
+```
+/sdcard/Android/data/com.yuva.launcher/files/deck/
+  deck.json                 # manifest (see below)
+  <id>.jpg  <id>_thumb.jpg  # 1920x1080 image + 480x270 thumbnail
+```
+
+```json
+{ "default": "crimson-eclipse",
+  "wallpapers": [ { "id": "crimson-eclipse", "title": "Crimson Eclipse", "category": "Signature",
+    "mood": "…", "image": "crimson-eclipse.jpg", "thumbnail": "crimson-eclipse_thumb.jpg",
+    "accentColor": "#F04438", "sourceUrl": "…", "attribution": "…", "rights": "…",
+    "width": 2560, "height": 1440 } ] }
+```
+
+Entries whose files are missing are skipped. With no deck installed the launcher falls back to the three
+bundled original wallpapers. Anything in Downloads / Pictures / DCIM also appears under "Yours".
+
+Deck artwork is third-party and for personal display only, so it is deliberately **not** committed or bundled.
+Push your own with `adb push <file> /sdcard/Android/data/com.yuva.launcher/files/deck/`.

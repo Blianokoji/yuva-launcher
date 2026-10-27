@@ -1,36 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Wide glass tile with the app's banner/logo floating on it. The card takes focus. -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="@dimen/tile_cell"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingEnd="@dimen/row_gap"
-    android:paddingBottom="8dp">
+    android:gravity="center_horizontal"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:padding="6dp">
 
     <FrameLayout
         android:id="@+id/tile_card"
         android:layout_width="@dimen/tile_w"
         android:layout_height="@dimen/tile_h"
-        android:background="@drawable/tile_selector"
         android:focusable="true"
         android:focusableInTouchMode="false"
         android:clickable="true">
 
         <ImageView
             android:id="@+id/tile_icon"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
+            android:layout_width="@dimen/tile_icon_w"
+            android:layout_height="@dimen/tile_icon_h"
             android:layout_gravity="center"
+            android:scaleType="fitCenter"
             android:contentDescription="@null" />
     </FrameLayout>
 
     <TextView
         android:id="@+id/tile_label"
-        android:layout_width="@dimen/tile_w"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="start"
-        android:paddingTop="8dp"
+        android:gravity="center"
+        android:paddingTop="10dp"
         android:ellipsize="end"
         android:maxLines="1"
         android:textColor="@color/text_primary"
-        android:textSize="13sp" />
+        android:textSize="13sp"
+        android:visibility="gone" />
 </LinearLayout>

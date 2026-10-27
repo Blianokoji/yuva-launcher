@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="224dp"
+    android:layout_height="wrap_content"
+    android:clipChildren="false"
+    android:padding="8dp">
+
+    <!-- card = glass body + rim; deck_clip rounds everything inside it (art, scrim, title) as one piece -->
+    <FrameLayout
+        android:id="@+id/tile_card"
+        android:layout_width="208dp"
+        android:layout_height="117dp"
+        android:focusable="true"
+        android:clickable="true">
+
+        <FrameLayout
+            android:id="@+id/deck_clip"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="3dp">
+
+            <ImageView
+                android:id="@+id/tile_icon"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/charcoal"
+                android:scaleType="centerCrop"
+                android:contentDescription="@null" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_gravity="bottom"
+                android:background="@drawable/scrim_card" />
+
+            <TextView
+                android:id="@+id/tile_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-medium"
+                android:maxLines="1"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="9dp"
+                android:textColor="@color/moon_silver"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tile_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|end"
+                android:layout_margin="9dp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.1"
+                android:text="@string/active"
+                android:textColor="@color/moon_silver"
+                android:textSize="11sp"
+                android:visibility="gone" />
+        </FrameLayout>
+    </FrameLayout>
+</FrameLayout>

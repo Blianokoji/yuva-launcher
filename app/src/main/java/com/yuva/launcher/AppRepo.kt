@@ -5,10 +5,13 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
 
-data class AppItem(val pkg: String, val label: String, val icon: Drawable, val launch: Intent)
+/** [glyph] replaces a poor banner with a themed plate + vector (used for the browser). */
+data class AppItem(val pkg: String, val label: String, val icon: Drawable, val launch: Intent, val glyph: Int? = null)
 
 /** Enumerates launchable apps. Prefers LEANBACK_LAUNCHER, falls back to LAUNCHER. */
 object AppRepo {
+    private val GLYPHS = mapOf("com.internet.tvbrowser" to R.drawable.ic_globe)
+
     fun load(ctx: Context): List<AppItem> {
         val pm = ctx.packageManager
         val found = linkedMapOf<String, AppItem>()
@@ -29,7 +32,8 @@ object AppRepo {
                     // Prefer the TV banner where the app ships one; else fall back to the icon.
                     icon = runCatching { a.loadBanner(pm) ?: r.loadIcon(pm) }
                         .getOrNull() ?: a.loadIcon(pm),
-                    launch = launch
+                    launch = launch,
+                    glyph = GLYPHS[a.packageName]
                 )
             }
         }

@@ -20,9 +20,20 @@ class Prefs(ctx: Context) {
         "com.internet.tvbrowser"
     )
 
+    /** Any wallpaper chosen outside the deck clears the deck accent so the theme is re-derived from the image. */
     var wallpaperPath: String?
         get() = sp.getString("wallpaper", null)
-        set(v) = sp.edit().putString("wallpaper", v).apply()
+        set(v) = sp.edit().putString("wallpaper", v).putInt("wallpaper_accent", 0).apply()
+
+    /** 0 = derive the accent from the image. Deck entries ship a curated accent. */
+    val wallpaperAccent: Int get() = sp.getInt("wallpaper_accent", 0)
+
+    fun setWallpaper(path: String, accent: Int) =
+        sp.edit().putString("wallpaper", path).putInt("wallpaper_accent", accent).apply()
+
+    var userName: String
+        get() = sp.getString("user_name", "Blessen") ?: "Blessen"
+        set(v) = sp.edit().putString("user_name", v).apply()
 
     var tileScale: Float
         get() = sp.getFloat("tile_scale", 1.0f)

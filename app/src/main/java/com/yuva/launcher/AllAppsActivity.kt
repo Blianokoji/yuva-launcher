@@ -10,17 +10,18 @@ class AllAppsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val rv = RecyclerView(this).apply {
-            layoutManager = GridLayoutManager(this@AllAppsActivity, 6)
-            setPadding(48, 48, 48, 48)
+            layoutManager = GridLayoutManager(this@AllAppsActivity, 7)
+            setPadding(40, 48, 40, 48)
             clipToPadding = false
-            setBackgroundColor(0xFF0C0A1C.toInt())
+            clipChildren = false
         }
-        setContentView(rv)
+        setContentView(themedScreen(this, rv))
         val items = AppRepo.load(this).toMutableList()
         rv.adapter = TileAdapter(
             items = items,
             tileScale = 1.0f,
             animScaleMs = 120,
+            showLabels = true,
             onClick = {
                 runCatching { startActivity(it.launch) }
                 finish()

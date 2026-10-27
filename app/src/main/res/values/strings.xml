@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Yuva</string>
-    <string name="all_apps">All Apps</string>
+    <string name="app_name">Crimson Eclipse</string>
+    <string name="all_apps">Apps</string>
+    <string name="home">Home</string>
+    <string name="your_apps">Your apps</string>
     <string name="settings">Settings</string>
     <string name="hdmi_1">HDMI 1</string>
-    <string name="wallpaper">Wallpaper</string>
+    <string name="wallpaper">Wallpapers</string>
     <string name="pick_wallpaper">Pick wallpaper</string>
     <string name="tile_size">Tile size</string>
     <string name="anim_speed">Animation speed</string>
     <string name="hidden_apps">Hidden apps</string>
-    <string name="reorder_hint">Hold OK to move · press MENU to hide</string>
-    <string name="clock_fmt">HH:mm</string>
+    <string name="apply_wallpaper">Apply wallpaper</string>
+    <string name="active">ACTIVE</string>
 </resources>

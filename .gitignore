@@ -21,3 +21,8 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Wallpaper deck artwork is third-party and personal-use only: it lives on the device, never in the repo
+deck/
+*.deck.jpg
+lint-report.txt

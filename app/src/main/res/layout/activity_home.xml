@@ -1,77 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/canvas">
+    android:clipChildren="false">
 
-    <!-- full-bleed wallpaper, scaled to fill -->
+    <!-- wallpaper, slightly oversized so it can drift with focus (parallax) -->
     <ImageView
         android:id="@+id/wallpaper"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
+        android:scaleX="1.06"
+        android:scaleY="1.06"
         android:contentDescription="@null" />
 
-    <!-- scrim for legibility -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/wallpaper_scrim" />
+    <!-- left nav rail -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/nav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start|center_vertical"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="30dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:focusable="false"
+        android:descendantFocusability="afterDescendants" />
 
-    <!-- status cluster, top-right -->
+    <!-- top-right: network chip + time -->
     <LinearLayout
-        android:id="@+id/status_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="top|end"
-        android:orientation="horizontal"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="@dimen/side_pad"
         android:gravity="center_vertical"
-        android:padding="@dimen/status_pad">
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/wifi_label"
+        <FrameLayout
+            android:id="@+id/net_chip"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginEnd="24dp">
+            <ImageView
+                android:id="@+id/net_icon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_wifi" />
+        </FrameLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_muted"
-            android:textSize="14sp"
-            android:layout_marginEnd="18dp" />
+            android:gravity="end"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/clock"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/text_primary"
-            android:textSize="18sp"
-            android:fontFamily="sans-serif-light" />
+            <TextView
+                android:id="@+id/clock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:includeFontPadding="false"
+                android:textColor="@color/text_primary"
+                android:textSize="28sp" />
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:textColor="@color/text_muted"
+                android:textSize="14sp" />
+        </LinearLayout>
     </LinearLayout>
 
-    <!-- vertical stack of the two rows, anchored to the bottom with gap between -->
+    <!-- greeting -->
+    <LinearLayout
+        android:id="@+id/greeting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|start"
+        android:layout_marginStart="@dimen/content_start"
+        android:layout_marginTop="92dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/greet_hi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:textColor="@color/text_primary"
+            android:textSize="26sp" />
+
+        <TextView
+            android:id="@+id/greet_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:includeFontPadding="false"
+            android:letterSpacing="-0.02"
+            android:textColor="@color/text_primary"
+            android:textSize="60sp" />
+
+        <TextView
+            android:id="@+id/greet_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="sans-serif-light"
+            android:textColor="@color/text_muted"
+            android:textSize="19sp" />
+    </LinearLayout>
+
+    <!-- bottom: section label (shows the focused app) + app row -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:orientation="vertical"
-        android:paddingBottom="32dp">
+        android:clipChildren="false"
+        android:paddingBottom="34dp">
+
+        <TextView
+            android:id="@+id/row_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/content_start"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/text_primary"
+            android:textSize="22sp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/app_row"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="@dimen/side_pad"
-            android:paddingEnd="@dimen/side_pad"
+            android:layout_marginTop="6dp"
+            android:clipChildren="false"
             android:clipToPadding="false"
-            android:focusable="true"
-            android:descendantFocusability="afterDescendants" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/system_row"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:paddingStart="@dimen/side_pad"
-            android:paddingEnd="@dimen/side_pad"
-            android:clipToPadding="false"
-            android:focusable="true"
+            android:paddingStart="246dp"
+            android:paddingTop="20dp"
+            android:paddingEnd="40dp"
+            android:paddingBottom="16dp"
+            android:focusable="false"
             android:descendantFocusability="afterDescendants" />
     </LinearLayout>
 </FrameLayout>

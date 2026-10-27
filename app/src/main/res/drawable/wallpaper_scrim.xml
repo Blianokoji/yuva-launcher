@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- bottom-to-top dim so tile text stays legible on bright wallpapers -->
-<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
-    <gradient
-        android:startColor="#B30C0A1C"
-        android:centerColor="#4D0C0A1C"
-        android:endColor="#330C0A1C"
-        android:angle="90" />
-</shape>
