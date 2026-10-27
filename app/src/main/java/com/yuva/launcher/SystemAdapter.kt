@@ -25,10 +25,10 @@ class SystemAdapter(private val items: List<SystemTile>) :
     }
 
     override fun onBindViewHolder(h: VH, pos: Int) {
-        val it = items[pos]
+        val tile = items[pos]
         h.icon.setImageDrawable(null)
-        h.label.text = it.label
-        h.card.setOnClickListener { it.onClick() }
+        h.label.text = tile.label
+        h.card.setOnClickListener { tile.onClick() }
         h.card.setOnFocusChangeListener { v, has ->
             v.animate().scaleX(if (has) 0.82f else 0.75f).scaleY(if (has) 0.82f else 0.75f).setDuration(100).start()
         }

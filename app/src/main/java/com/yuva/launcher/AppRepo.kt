@@ -26,7 +26,8 @@ object AppRepo {
                 found[a.packageName] = AppItem(
                     pkg = a.packageName,
                     label = r.loadLabel(pm)?.toString() ?: a.packageName,
-                    icon = runCatching { r.loadBanner(pm) ?: r.loadIcon(pm) }
+                    // Prefer the TV banner where the app ships one; else fall back to the icon.
+                    icon = runCatching { a.loadBanner(pm) ?: r.loadIcon(pm) }
                         .getOrNull() ?: a.loadIcon(pm),
                     launch = launch
                 )

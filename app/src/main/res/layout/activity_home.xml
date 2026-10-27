@@ -45,29 +45,33 @@
             android:fontFamily="sans-serif-light" />
     </LinearLayout>
 
-    <!-- main row anchored to the lower third -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/app_row"
+    <!-- vertical stack of the two rows, anchored to the bottom with gap between -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:layout_marginBottom="80dp"
-        android:paddingStart="@dimen/side_pad"
-        android:paddingEnd="@dimen/side_pad"
-        android:clipToPadding="false"
-        android:focusable="true"
-        android:descendantFocusability="afterDescendants" />
+        android:orientation="vertical"
+        android:paddingBottom="32dp">
 
-    <!-- small bottom row for inputs / all apps / settings -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/system_row"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="16dp"
-        android:paddingStart="@dimen/side_pad"
-        android:paddingEnd="@dimen/side_pad"
-        android:clipToPadding="false"
-        android:focusable="true"
-        android:descendantFocusability="afterDescendants" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/app_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/side_pad"
+            android:paddingEnd="@dimen/side_pad"
+            android:clipToPadding="false"
+            android:focusable="true"
+            android:descendantFocusability="afterDescendants" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/system_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:paddingStart="@dimen/side_pad"
+            android:paddingEnd="@dimen/side_pad"
+            android:clipToPadding="false"
+            android:focusable="true"
+            android:descendantFocusability="afterDescendants" />
+    </LinearLayout>
 </FrameLayout>

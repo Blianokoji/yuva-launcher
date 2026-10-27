@@ -2,7 +2,8 @@ package com.yuva.launcher
 
 import android.content.Intent
 import android.graphics.BitmapFactory
-import android.net.wifi.WifiManager
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -149,9 +150,16 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun updateWifi() {
-        val wm = applicationContext.getSystemService(WIFI_SERVICE) as? WifiManager
-        val connected = wm?.connectionInfo?.networkId != -1
-        wifiLabel.text = if (connected == true) "Wi-Fi" else "No network"
+        // ConnectivityManager — no WiFi permission needed, works on all transports
+        val cm = applicationContext.getSystemService(ConnectivityManager::class.java)
+        val caps = runCatching { cm?.getNetworkCapabilities(cm.activeNetwork) }.getOrNull()
+        wifiLabel.text = when {
+            caps == null -> ""
+            caps.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> "Wi-Fi"
+            caps.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> "Ethernet"
+            caps.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> "Mobile"
+            else -> ""
+        }
     }
 }
 
